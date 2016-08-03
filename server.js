@@ -2,6 +2,8 @@ var sys = require('util');
 var net = require('net');
 var mqtt = require('mqtt');
 var mqtthost = '193.108.128.254';
+var express = require('express');
+var app = express();
 var options = {
     host: mqtthost,
     port: 1883,
@@ -9,9 +11,6 @@ var options = {
     protocolVersion: 3
 };
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/html/index.html');
-});
 
 // create a socket object that listens on port 3000
 var io = require('socket.io').listen(3000);
