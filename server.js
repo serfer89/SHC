@@ -9,6 +9,9 @@ var options = {
     protocolVersion: 3
 };
 
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/html/index.html');
+});
 
 // create a socket object that listens on port 3000
 var io = require('socket.io').listen(3000);
