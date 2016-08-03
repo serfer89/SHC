@@ -10,7 +10,7 @@ var options = {
 };
 
 
-// create a socket object that listens on port 5000
+// create a socket object that listens on port 3000
 var io = require('socket.io').listen(3000);
  console.log('Listen 3000');
 // create an mqtt client object and connect to the mqtt broker
