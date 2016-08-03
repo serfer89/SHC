@@ -1,0 +1,10 @@
+{
+  "name": "SHC",
+  "version": "0.0.1",
+  "description": "simple home controll",
+  "dependencies": {
+    "express": "4.10.2",
+    "mqtt": "^1.13.0",
+    "socket.io": "1.2.0"
+  }
+}
