@@ -1,5 +1,6 @@
 var sys = require('util');
 var net = require('net');
+var query = require('./js/mongo_ops');//Подключаем наш модуль js
 var mqtt = require('mqtt');
 var mqtthost = '193.108.128.254';
 var express = require('express');
@@ -10,6 +11,9 @@ var options = {
     protocolId: 'MQIsdp',
     protocolVersion: 3
 };
+
+
+
 
 
 // create a socket object that listens on port 3000
@@ -30,8 +34,15 @@ io.sockets.on('connection', function (socket) {
     socket.on('publish', function (data) {
         console.log('Publishing to '+data.topic);
         client.publish(data.topic,data.payload);
-    });
-});
+   
+	var op = 'update'; 
+	var op = new query.mdb(op, data.topic, data.payload);
+	op.view();
+
+
+// socket.io end
+	 });
+	});
  
 // listen to messages coming from the mqtt broker
 client.on('message', function (topic, payload, packet) {
