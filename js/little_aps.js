@@ -41,6 +41,7 @@ switch (month) {
     break;
 };
 
+
 document.getElementById('cMonth').innerHTML += month;
 return(month);
 
