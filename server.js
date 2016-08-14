@@ -29,13 +29,18 @@ io.sockets.on('connection', function (socket) {
         socket.join(data.topic);
         client.subscribe(data.topic);
     });
+
+    socket.on('device_state', function (data) {
+        console.log('get to '+data.topic+" the "+data.payload);
+        
+    });
     // when socket connection publishes a message, forward that message
     // the the mqtt broker
     socket.on('publish', function (data) {
         console.log('Publishing to '+data.topic);
         client.publish(data.topic,data.payload);
    
-	var op = 'update'; 
+	var op = 'find'; 
 	var op = new query.mdb(op, data.topic, data.payload);
 	op.view();
 

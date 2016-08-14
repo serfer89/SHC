@@ -62,15 +62,17 @@ var findDocuments = function(db, callback) {
   // Find some documents
   collection.find({name : 'light'}).toArray(function(err, docs) {
 
-    console.log("Found the following records22");
-    console.dir(docs);
-    callback(docs);
+    console.log("Found "+docs.length+" records");
+    //console.dir(docs);
+    callback(docs.length);
+
   });
+
 }
 
 
  findDocuments(db, function() {
-console.log('123'); db.close();
+console.log(); db.close();
 /*
 
 

@@ -19,6 +19,8 @@ if ($('.active').length  == 0)
 	function device_changer(elem, name) {
 
 		var id = elem.id;
+		socket.emit('device_state',{topic: "find",payload: id});
+
 		$('.active').removeClass("active");
 		$('#device_div').removeClass("hide");		
 		document.getElementById(id).className += " active";
@@ -49,7 +51,7 @@ if ($('.active').length  == 0)
  
 </script>
 <script>
-  var socket = io.connect('192.168.0.77:3000');
+  var socket = io.connect('localhost:3000');
   socket.on('connect', function () {
     socket.on('mqtt', function (msg) {
 
