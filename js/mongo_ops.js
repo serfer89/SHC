@@ -75,9 +75,12 @@ var findDocuments = function(db, callback) {
   var collection = db.collection('controlers');
   // Find some documents
   collection.find({}).toArray(function(err, docs) {
-    assert.equal(err, null);
-    assert.equal(1, docs.length);
+
     console.log("Found the following records");
+
+
+
+
     console.dir(docs);
     callback(docs);
   });
