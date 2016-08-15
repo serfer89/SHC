@@ -19,6 +19,8 @@ if ($('.active').length  == 0)
 	function device_changer(elem, name) {
 
 		var id = elem.id;
+		socket.emit('device_state',{topic: "find",payload: id});
+
 		$('.active').removeClass("active");
 		$('#device_div').removeClass("hide");		
 		document.getElementById(id).className += " active";
@@ -85,16 +87,11 @@ else {$('#mqt').text(msg.payload);}
 
 
 <div class="wrap">
-	<!-- start grids_of_3 -->
-	<!---728x90--->
+
 	<div class="grids_of_3">
 		<div class="grid1_of_3">
 			<div class="btn_style bg0">
 				<h4>Пристрої</h4>
-			</div>
-			<div class="grid_img">
-				<img src="images/pic1.jpg" alt="">
-						
 			</div>
 			<div class="menu_box_list">
 				<ul id="device_list" >
@@ -240,3 +237,4 @@ else {$('#mqt').text(msg.payload);}
 </body>
 
     </html>
+
