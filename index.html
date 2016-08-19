@@ -55,7 +55,7 @@ if ($('.active').length  == 0)
  
 </script>
 <script>
-  var socket = io.connect('localhost:3000');
+  var socket = io.connect('46.164.174.161:1885');
   socket.on('connect', function () {
     socket.on('mqtt', function (msg) {
 
