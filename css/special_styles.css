@@ -503,19 +503,29 @@ img{max-width:100%;}
 }
 /* locate style */
 .locate {
-	padding: 30px;
-	background: rgba(255, 255, 255, 0.18);
+	text-align: center;
+	color:#fff;
+
+	font-size: 1.5em;
+	font-weight:100;
 	border-radius: 0px 0px 10px 10px;
 	-webkit-border-radius: 0px 0px 10px 10px;
 	-moz-border-radius: 0px 0px 10px 10px;
 	-o-border-radius: 0px 0px 10px 10px;
+	background: rgba(255, 255, 255, 0.13);
 }
+.locate p {
+	vertical-align:baseline;
+}
+.locate span {
+	vertical-align: 0.7em;
+}
+
+/*
 .locate a{
 	display: block;
 }
-.locate p.new {
-	background: url('../images/loc.png') no-repeat 0px 5px;
-}
+
 .locate p{
 	float:left;
 	padding-left: 20px;
@@ -541,7 +551,7 @@ img{max-width:100%;}
 }
 .locate span.mark:hover{
 	background: url('../images/mark_h.png') no-repeat 0px 0px;
-}
+}*/
 /* start buttons */
 .buttons{
 	text-align: center;

@@ -3,14 +3,16 @@ function mdb(op, topic, payload){
     this.op = op;
     this.topic = topic;
     this.payload = payload;
+    this.x_state = 101;
 }
 //Добавим еще один метод для вывода имени
 mdb.prototype.view = function(){
 
-
+ x_state = this.x_state;
 var op = this.op;
 var topic = this.topic;
 var payload = this.payload;
+
 
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
@@ -69,22 +71,20 @@ var deleteDocument = function(db, callback) {
   });
 }
 
-
+/*
 var findDocuments = function(db, callback) {
   // Get the documents collection
   var collection = db.collection('controlers');
   // Find some documents
-  collection.find({}).toArray(function(err, docs) {
+  collection.find({ name : topic }).toArray(function(err, docs) {
+    console.log(x_state+" Found the following records with name: "+topic);
 
-    console.log("Found the following records");
-
-
-
-
-    console.dir(docs);
-    callback(docs);
+	x_state = docs[0].state;
+ console.log(x_state+" after: ");
+    callback(docs, x_state);
   });
-}
+
+}*/
 
 
 switch (op) {
@@ -96,16 +96,14 @@ switch (op) {
      deleteDocument(db, function() {
  db.close()});
     break;
-  case 'find':
-     findDocuments(db, function() {
- db.close()});
-    break;
+
 };
 
 });
 
+
 };
 
 
-exports.mdb =  mdb;
+module.exports.mdb =  mdb;
 
