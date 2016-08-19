@@ -13,12 +13,16 @@
 
 $( document ).ready(function() { 
 
+getWeather();
+
 if ($('.active').length  == 0)
 {$('#device_div').addClass("hide");}
 });
 	function device_changer(elem, name) {
 
 		var id = elem.id;
+		socket.emit('device_state',{topic: id,payload: id});
+
 		$('.active').removeClass("active");
 		$('#device_div').removeClass("hide");		
 		document.getElementById(id).className += " active";
@@ -31,6 +35,8 @@ if ($('.active').length  == 0)
 
 	function GetCheckedState (elem) {
 		var id = elem.id;
+
+
 
 			document.getElementById (id).value = document.getElementById (id).checked
 
@@ -73,6 +79,8 @@ else {$('#mqt').text(msg.payload);}
     });
     socket.emit('subscribe',{topic:'outTopic'});
   });
+
+
 </script>
 
 </head>
@@ -85,16 +93,11 @@ else {$('#mqt').text(msg.payload);}
 
 
 <div class="wrap">
-	<!-- start grids_of_3 -->
-	<!---728x90--->
+
 	<div class="grids_of_3">
 		<div class="grid1_of_3">
 			<div class="btn_style bg0">
 				<h4>Пристрої</h4>
-			</div>
-			<div class="grid_img">
-				<img src="images/pic1.jpg" alt="">
-						
 			</div>
 			<div class="menu_box_list">
 				<ul id="device_list" >
@@ -137,7 +140,7 @@ else {$('#mqt').text(msg.payload);}
 				<h4>Web-cam</h4>
 			</div>
 			<div class="grid_img1">
-				<img src="http://193.108.128.254:8081" alt="">
+				<img src="http://46.164.174.161:8081" alt="">
 			</div>
 				
 			<div class="grids_left">
@@ -163,22 +166,37 @@ else {$('#mqt').text(msg.payload);}
 			<div class="chart">
 			<canvas id="canvas" height="250" width="295" style="margin-top: 30px; width: 295px; height: 250px;"></canvas>
 				<script>
-						var lineChartData = {
-						labels : ["January","February","March","April","May","June","July"],
+
+var x = chartData("x");
+var y = chartData("y");
+var d = new Date();
+var n = d.getDate();
+var m = d.getMonth()+1;
+var cur_date = n+"."+m;
+var cur_date= [];
+var p = n+4;
+for (n; n < p; n++) {
+var xd = cur_date.push(n+"."+m);}
+
+alert(cur_date);
+
+
+var lineChartData = {labels : cur_date,
 						datasets : [
 							{
 								fillColor : "rgba(220,220,220,0.5)",
 								strokeColor : "rgba(220,220,220,1)",
 								pointColor : "rgba(220,220,220,1)",
 								pointStrokeColor : "#fff",
-								data : [65,59,90,81,56,55,40]
+
+data : x
 							},
 							{
 								fillColor : "rgba(151,187,205,0.5)",
 								strokeColor : "rgba(151,187,205,1)",
 								pointColor : "rgba(151,187,205,1)",
 								pointStrokeColor : "#fff",
-								data : [28,48,40,19,96,27,100]
+								data : y
 							}
 						]
 						
@@ -217,15 +235,28 @@ else {$('#mqt').text(msg.payload);}
 			<div class="btn_style bg4">
 				<h4>location</h4>
 			</div>
-			<div class="locate">
-				<a href="#"><p class="new">san francisco</p></a> 
-				<a href="#"><span class="mark"></span></a>
+			<div class="locate" >
+				<p id="forecast"> Погода 					сьогодні:</p>
+				<p id="forecast_t"> Погода на 					завтра:</p>
+			</div>
 				<div class="clear"></div>
 			</div>
 
 		</div>
 	<div class="clear"></div>
-	<!---728x90--->
+	<!---728x90
+
+01d	01n	Чистое небо
+02d	02n	Малооблачно
+03d	03n	Рваная облачность
+04d	04n	Облачно с прояснениями
+09d	09n	Ливневый дождь
+10d	10n	Дождь
+11d	11n	Гроза
+13d	13n	Снег
+50d	50n	Туман 
+
+--->
 
 	<div class="copy">
 
@@ -240,3 +271,4 @@ else {$('#mqt').text(msg.payload);}
 </body>
 
     </html>
+
