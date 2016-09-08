@@ -1,4 +1,62 @@
 
+
+function weather_chart()
+{
+var data_y = [];
+var data_x = [];
+var data_d = [];
+    $.getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=Kyiv&appid=d01946c71f847270df726ba46cc786b6&mode=json&units=metric&cnt=7",function(result){
+
+	for (i = 0; i < 4; i++) {
+	var x = data_x.push(result.list[i].temp.max);
+	var y = data_y.push(result.list[i].temp.min);
+	cdate = new Date(result.list[i].dt*1000);
+	cmonth = cdate.getMonth()+1;
+	cday = cdate.getDate();
+	if (cday<10){cday = "0"+cday};
+	if (cmonth<10){cmonth = "0"+cmonth};
+	cdate = cday+"."+cmonth;
+
+	var d = data_d.push(cdate);
+
+		}
+
+
+
+
+
+
+
+
+
+var lineChartData = {labels : data_d,
+						datasets : [
+							{
+								fillColor : "rgba(220,220,220,0.5)",
+								strokeColor : "rgba(220,220,220,1)",
+								pointColor : "rgba(220,220,220,1)",
+								pointStrokeColor : "#fff",
+
+data : data_x
+							},
+							{
+								fillColor : "rgba(151,187,205,0.5)",
+								strokeColor : "rgba(151,187,205,1)",
+								pointColor : "rgba(151,187,205,1)",
+								pointStrokeColor : "#fff",
+								data : data_y
+							}
+						]
+						
+					}
+			
+				var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+				});
+
+}
+
+
+
 function getWeather() {
 
     $.getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=Kyiv&appid=d01946c71f847270df726ba46cc786b6&mode=json&units=metric&cnt=7",function(result){
@@ -11,36 +69,6 @@ $('#forecast_t').html(result_html_t);
 
 }
 
-function chartData(pointer)
-
-{
-
-var data_y = [];
-var data_x = [];
-
-    $.getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=Kyiv&appid=d01946c71f847270df726ba46cc786b6&mode=json&units=metric&cnt=7",function(result){
-
-	for (i = 0; i < 4; i++) {
-	var x = data_x.push(result.list[i].temp.max);
-	var y = data_y.push(result.list[i].temp.min);
-		}
-	this.data_y = data_y;
-	this.data_x = data_x;
-});
-switch (pointer)
-
-{
-	case "x":
- 	 data = data_x; 
-	break;
-	case "y":
-	 data = data_y; 
-	break;
-}
-
-return data;
-
-}
 
 function gettMonth(month)
 {
@@ -102,4 +130,3 @@ document.getElementById('cDay').innerHTML += day;
 return(day);
 
 }
-
