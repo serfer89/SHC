@@ -8,7 +8,13 @@
 <script src="./js/little_aps.js"></script>
 <link rel="stylesheet" href="./css/styles.css">
 <link rel="stylesheet" href="./css/special_styles.css">
-
+    <style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
 <script>
 
 $( document ).ready(function() { 
@@ -55,7 +61,7 @@ if ($('.active').length  == 0)
  
 </script>
 <script>
-  var socket = io.connect('46.164.174.161:1885');
+  var socket = io.connect('localhost:3000');
   socket.on('connect', function () {
     socket.on('mqtt', function (msg) {
 
@@ -167,43 +173,7 @@ else {$('#mqt').text(msg.payload);}
 			<canvas id="canvas" height="250" width="295" style="margin-top: 30px; width: 295px; height: 250px;"></canvas>
 				<script>
 
-var x = chartData("x");
-var y = chartData("y");
-var d = new Date();
-var n = d.getDate();
-var m = d.getMonth()+1;
-var cur_date = n+"."+m;
-var cur_date= [];
-var p = n+4;
-for (n; n < p; n++) {
-var xd = cur_date.push(n+"."+m);}
-
-alert(cur_date);
-
-
-var lineChartData = {labels : cur_date,
-						datasets : [
-							{
-								fillColor : "rgba(220,220,220,0.5)",
-								strokeColor : "rgba(220,220,220,1)",
-								pointColor : "rgba(220,220,220,1)",
-								pointStrokeColor : "#fff",
-
-data : x
-							},
-							{
-								fillColor : "rgba(151,187,205,0.5)",
-								strokeColor : "rgba(151,187,205,1)",
-								pointColor : "rgba(151,187,205,1)",
-								pointStrokeColor : "#fff",
-								data : y
-							}
-						]
-						
-					}
-			
-				var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
-				
+weather_chart();
 				</script>
 			</div>
 		</div>
@@ -271,4 +241,3 @@ data : x
 </body>
 
     </html>
-
