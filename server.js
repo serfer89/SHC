@@ -30,9 +30,49 @@ var MongoClient = require('mongodb').MongoClient
 // Connection URL
 var url = 'mongodb://localhost:27017/shc';
 // Use connect method to connect to the Server
+
+
+
+
+
+
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server");
+
+
+    socket.on('choose_room', function (data) {
+
+	db.collection('room').find({id_user : 1}).toArray(function(err, rooms) {
+
+    console.log("Found "+rooms.length+" rooms records");
+	for (i = 0; i < rooms.length; i++) 
+	{
+			console.log("Found "+ rooms[i].name);
+	}
+	/*x_name = docs[0].name;
+	x_id = docs[0].id;
+	console.log("too "+ x_state);
+	 io.sockets.emit('mqtt',{'topic':String(data.topic),
+                            'payload':String(x_state)});
+	console.log("device_state_ans go.. "+ x_state+ data.topic);*/
+	
+
+  });
+	/*
+        console.log('get to '+data.topic+" the "+data.payload);
+	var op = 'find'; 
+	var op = new query.mdb(op, data.topic, data.payload);
+	op.view();*/
+	
+    });
+
+
+
+
+
+
+
 
 collection = db.collection('controlers');
 //mongo.db end
@@ -92,4 +132,3 @@ client.on('message', function (topic, payload, packet) {
     io.sockets.emit('mqtt',{'topic':String(topic),
                             'payload':String(payload)});
 });
-
