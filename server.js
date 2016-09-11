@@ -43,7 +43,7 @@ MongoClient.connect(url, function(err, db) {
 
     socket.on('choose_room', function (data) {
 
-	db.collection('room').find({id_user : 1}).toArray(function(err, rooms) {
+	db.collection('rooms').find({id_user : 1}).toArray(function(err, rooms) {
 
     console.log("Found "+rooms.length+" rooms records");
 	for (i = 0; i < rooms.length; i++) 
