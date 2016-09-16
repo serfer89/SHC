@@ -309,7 +309,7 @@ window.Chart = function(context){
 			datasetStrokeWidth : 2,
 			datasetFill : true,
 			animation : true,
-			animationSteps : 60,
+			animationSteps : 80,
 			animationEasing : "easeOutQuart",
 			onAnimationComplete : null
 		};		
@@ -840,6 +840,7 @@ window.Chart = function(context){
 				}
 				if(config.pointDot){
 					ctx.fillStyle = data.datasets[i].pointColor;
+					
 					ctx.strokeStyle = data.datasets[i].pointStrokeColor;
 					ctx.lineWidth = config.pointDotStrokeWidth;
 					for (var k=0; k<data.datasets[i].data.length; k++){

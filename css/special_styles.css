@@ -623,10 +623,17 @@ li a:focus {
 	-moz-border-radius: 0px 0px 10px 10px;
 	-o-border-radius: 0px 0px 10px 10px;
 	background: rgba(255, 255, 255, 0.13);
+<<<<<<< HEAD
 }
 .locate p {
 	vertical-align:baseline;
 }
+=======
+}
+.locate p {
+	vertical-align:baseline;
+}
+>>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 .locate span {
 	vertical-align: 0.7em;
 }

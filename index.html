@@ -6,13 +6,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="./js/charts.js"></script>
 <script src="./js/little_aps.js"></script>
+
 <link rel="stylesheet" href="./css/styles.css">
 <link rel="stylesheet" href="./css/special_styles.css">
 
+
+    <style>
+
+
+
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
 <script>
 
-$( document ).ready(function() { 
 
+<<<<<<< HEAD
 getWeather();
 
 if ($('.active').length  == 0)
@@ -30,56 +42,170 @@ if ($('.active').length  == 0)
 		$('#device_label').text(name);
 		$('#device_id').val(id);
 		socket.emit('subscribe',{topic:id});
+=======
+  var socket = io.connect('http://5.1.2.98:1885');
+socket.emit('choose_room');
+
+
+
+$(document).ready(function() {
+
+function get_controllers(id)
+
+{
+var id = this.id;
+alert(id);
+}
+
+  getWeather();
+
+
+
+
+
+  if ($('.active').length == 0) {
+    $('#device_div').addClass("hide");
+  }
+});
+
+function device_changer(id) {
+
+  var name = id;
+  socket.emit('device_state', {
+    topic: id,
+    payload: id
+  });
+
+  $('.active').removeClass("active");
+  $('#device_div').removeClass("hide");
+  document.getElementById(id).className += " active";
+
+  $('#device_label').text(name);
+  $('#device_id').val(id);
+  socket.emit('subscribe', {
+    topic: id
+  });
+}
+
+
+function GetCheckedState(elem) {
+  var id = elem.id;
+
+
+
+  document.getElementById(id).value = document.getElementById(id).checked
+
+
+  if (elem.value == "true") {
+    socket.emit('publish', {
+      topic: $('#device_id').val(),
+      payload: "1"
+    });
+    socket.emit('publish', {
+      topic: "inTopic",
+      payload: "1"
+    });
+  } else {
+    socket.emit('publish', {
+      topic: $('#device_id').val(),
+      payload: "0"
+    });
+    socket.emit('publish', {
+      topic: "inTopic",
+      payload: "0"
+    });
+  }
+
+
+};
+
+ socket.on('connect', function() {
+
+  function show_controlers_list() {
+    socket.on('controlers_list', function(controlers) {
+     
+
+	var controlers_list = jQuery.parseJSON(controlers.payload);
+
+
+
+
+
+     
+
+      $("#device_list").html('<ul>');
+	if (controlers_list.length === 0) {       $("#device_list").append('<li> <span class="nav_li">No result!</span> </li>');}
+ else
+	{ 
+      for (i = 0; i < controlers_list.length; i++) {
+      $("#device_list").append('<li onclick="device_changer(\''+controlers_list[i].name+'\')" id="'+ controlers_list[i].name  +'"><span class="nav_li">'+ controlers_list[i].name +'</span><div class="clear"></div></li>');
+>>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 		}
+	}
+      $("#device_list").append('</ul>');
+    });
+  }
 
+  function show_rooms_list() {
+    socket.on('rooms_list', function(rooms) {
+     
 
-	function GetCheckedState (elem) {
-		var id = elem.id;
+	var rooms_list = jQuery.parseJSON(rooms.payload);
 
+<<<<<<< HEAD
 
 
 			document.getElementById (id).value = document.getElementById (id).checked
+=======
+>>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 
 
-	                if (elem.value == "true") {
-	                    socket.emit('publish', {topic:$('#device_id').val(),payload:"1"});
-	                    socket.emit('publish', {topic:"inTopic",payload:"1"});
-	                } else {
-	                    socket.emit('publish', {topic:$('#device_id').val(),payload:"0"});
-	                    socket.emit('publish', {topic:"inTopic",payload:"0"});
-	                }
 
 
-			        };
+     
 
- 
-</script>
-<script>
-  var socket = io.connect('localhost:3000');
-  socket.on('connect', function () {
-    socket.on('mqtt', function (msg) {
+      $("#menu").html('<ul>');
 
-      console.log(msg.topic+' '+msg.payload);
-if (msg.payload == "1" || msg.payload == "0")
-{
+      for (i = 0; i < rooms_list.length; i++) {
+        $("#menu").append('<li onclick="get_controllers('+ rooms_list[i].id+', \''+rooms_list[i].name+'\')">'  + rooms_list[i].name  + '</li>');
+      }
+
+      $("#menu").append('</ul>');
+    });
+  }
+
+show_rooms_list();
+show_controlers_list();
+	toggler();
+
+  socket.on('mqtt', function(msg) {
+
+    console.log(msg.topic + ' ' + msg.payload);
+    if (msg.payload == "1" || msg.payload == "0") {
 
       if (msg.payload == "0" && msg.topic == $('.active').attr('id')) {
         if ($('#device').is(':checked')) {
-		$('#device').prop('checked', false);
-         
+          $('#device').prop('checked', false);
+
         }
       }
       if (msg.payload == "1" && msg.topic == $('.active').attr('id')) {
         if (!$('#device').is(':checked')) {
-		$('#device').prop('checked', true);
+          $('#device').prop('checked', true);
         }
       }
-	}
-else {$('#mqt').text(msg.payload);}
-    });
-    socket.emit('subscribe',{topic:'outTopic'});
+    } else {
+      $('#mqt').text(msg.payload);
+    }
   });
+  socket.emit('subscribe', {
+    topic: 'outTopic'
+  });
+<<<<<<< HEAD
 
+=======
+});
+>>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 
 </script>
 
@@ -92,6 +218,7 @@ else {$('#mqt').text(msg.payload);}
 
 
 
+<<<<<<< HEAD
 <div class="wrap">
 
 	<div class="grids_of_3">
@@ -263,12 +390,183 @@ data : x
 	</div>
 	</div>
 	<!---728x90--->
+=======
+  <div class="wrap">
+<nav>
+<a href="#menu" id="toggle"><span></span></a>
+>>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 
+<div id="menu">
+  
 </div>
-</div>
+</nav>
+
+   
+    <div class="grids_of_3">
+      <div class="grid1_of_3">
+        <div class="btn_style bg0">
+          <div id="room_label"><h4>Пристрої</h4></div>
+        </div>
+
+        <div class="menu_box_list" id="device_list">
+
+          <ul>
+            <li onclick="device_changer(this, 'Люстра')" id="light"><span class="nav_li">Люстра</span>
+              <div class="clear"></div>
+            </li>
+            <li onclick="device_changer(this, 'Бра')" id="mini_light"><span class="nav_li">Бра</span>
+              <div class="clear"></div>
+            </li>
+            <li onclick="device_changer(this, 'Підсвітка')" id="wall_light"><span class="nav_li">Підсвітка</span>
+              <div class="clear"></div>
+            </li>
+            <li onclick="device_changer(this, 'Штора')" id="sunblind"><span class="nav_li">Штора</span>
+              <div class="clear"></div>
+            </li>
+            <li onclick="device_changer(this, 'Ветилятор')" id="fan"><span class="nav_li">Ветилятор</span>
+              <div class="clear"></div>
+            </li>
+            <li onclick="device_changer(this, 'Зволожувач')" id="moisturizer"><span class="nav_li">Зволожувач</span>
+              <div class="clear"></div>
+            </li>
+
+          </ul>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="grid1_of_3 left">
+        <div class="btn_style bg">
+          <h4>Пристрій</h4>
+        </div>
+        <div class="login_form" id="device_div">
+          <div class="row demo">
+            <input type="hidden" id=device_id value="">
+            <label id="device_label" class="device_style"></label>
+            <input name="device" id="device" class="cbx hidden" checked="" type="checkbox" onchange="GetCheckedState (this)">
+            <label for="device" class="lbl"></label>
+
+
+          </div>
+        </div>
+        <div class="soc_icons">
+          <ul>
+            <li>
+              <a class="icon_1" href="#"></a>
+            </li>
+            <li>
+              <a class="icon_2" href="#"></a>
+            </li>
+            <li>
+              <a class="icon_3" href="#"></a>
+            </li>
+            <li>
+              <a class="icon_4" href="#"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid1_of_3 left">
+        <div class="btn_style bg1">
+          <h4>Web-cam</h4>
+        </div>
+        <div class="grid_img1">
+          <img src="" alt="web_cam">
+        </div>
+
+        <div class="grids_left">
+
+          <div class="clear"></div>
+
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid1_of_3">
+        <div class="btn_style bg2">
+          <ul>
+            <li>
+              <p>День</p>
+              <span id="cDay"><script>gettDay();</script></span>
+            </li>
+            <li>
+              <p>Місяць</p>
+              <span id="cMonth"><script>gettMonth();</script></span>
+            </li>
+          </ul>
+        </div>
+        <div class="chart">
+          <canvas id="canvas" height="250" width="295" style="margin-top: 30px; width: 295px; height: 250px;"></canvas>
+          <script>
+            weather_chart();
+
+          </script>
+        </div>
+      </div>
+      <div class="grid1_of_3 left">
+        <div class="btn_style bg3">
+          <h4>Температура</h4>
+        </div>
+        <div class="loader_main">
+          <div class="outc c">
+            <small class="c a"></small>
+            <small class="c b"></small>
+            <small class="c d"></small>
+            <small class="c e"></small>
+            <div class="spinner">
+              <div class="spinner-inner"></div>
+              <div class="spinner-mask"></div>
+              <div class="spinner-mask-two"></div>
+            </div>
+            <div class="innerc c"><img src="images/loader.png" alt=""> </div>
+          </div>
+          <div class="loader_top">
+            <span id='mqt'>вимірюю...</span>
+
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="grid1_of_3 left">
+        <div class="btn_style bg4">
+          <h4>location</h4>
+        </div>
+        <div class="locate">
+          <p id="forecast"> Погода сьогодні:</p>
+          <p id="forecast_t"> Погода на завтра:</p>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+    </div>
+    <div class="clear"></div>
+    <!---728x90
+
+01d	01n	Чистое небо
+02d	02n	Малооблачно
+03d	03n	Рваная облачность
+04d	04n	Облачно с прояснениями
+09d	09n	Ливневый дождь
+10d	10n	Дождь
+11d	11n	Гроза
+13d	13n	Снег
+50d	50n	Туман 
+
+--->
+
+    <div class="copy">
+
+    </div>
+  </div>
+  <!---728x90--->
+
+  </div>
+  </div>
 
 
 </body>
 
+<<<<<<< HEAD
     </html>
 
+=======
+</html>
+>>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
