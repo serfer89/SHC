@@ -43,7 +43,7 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('choose_room', function(data) {
 
-      db.collection('room').find({
+      db.collection('rooms').find({
         id_user: 1
       }).toArray(function(err, rooms) {
 
