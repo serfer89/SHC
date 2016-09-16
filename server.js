@@ -21,56 +21,6 @@ var io = require('socket.io').listen(3000);
 console.log('Listen 3000');
 // create an mqtt client object and connect to the mqtt broker
 var client = mqtt.connect(options);
-<<<<<<< HEAD
-  console.log('mqtt: ok');
-io.sockets.on('connection', function (socket) {
-// mongo.db
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
-
-// Connection URL
-var url = 'mongodb://localhost:27017/shc';
-// Use connect method to connect to the Server
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected correctly to server");
-
-collection = db.collection('controlers');
-//mongo.db end
-    // socket connection indicates what mqtt topic to subscribe to in data.topic
-    socket.on('subscribe', function (data) {
-        console.log('Subscribing to '+data.topic);
-        socket.join(data.topic);
-        client.subscribe(data.topic);
-    
-
-
-});
-
-    socket.on('device_state', function (data) {
-
-
-  collection.find({name : data.topic}).toArray(function(err, docs) {
-
-    console.log("Found "+docs.length+" records");
-    //console.dir(docs);
-    //callback(docs.length);
-	x_state = docs[0].state;
-	console.log("too "+ x_state);
-	 io.sockets.emit('device_state_ans',{'topic':String(data.topic),
-                            'payload':String(x_state)});
-	console.log("device_state_ans go.. "+ x_state);
-	
-
-  });
-	/*
-        console.log('get to '+data.topic+" the "+data.payload);
-	var op = 'find'; 
-	var op = new query.mdb(op, data.topic, data.payload);
-	op.view();
-	*/
-        
-=======
 console.log('mqtt: ok');
 io.sockets.on('connection', function(socket) {
   // mongo.db
@@ -148,7 +98,6 @@ io.sockets.on('connection', function(socket) {
 
 
 
->>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
     });
 
     socket.on('device_state', function(data) {
@@ -195,14 +144,6 @@ io.sockets.on('connection', function(socket) {
   });
 });
 
-<<<<<<< HEAD
-// socket.io end
-	 });
-	});
-});
- 
-=======
->>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 // listen to messages coming from the mqtt broker
 client.on('message', function(topic, payload, packet) {
   console.log(topic + '=' + payload);

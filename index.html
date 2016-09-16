@@ -24,25 +24,6 @@
 <script>
 
 
-<<<<<<< HEAD
-getWeather();
-
-if ($('.active').length  == 0)
-{$('#device_div').addClass("hide");}
-});
-	function device_changer(elem, name) {
-
-		var id = elem.id;
-		socket.emit('device_state',{topic: id,payload: id});
-
-		$('.active').removeClass("active");
-		$('#device_div').removeClass("hide");		
-		document.getElementById(id).className += " active";
-		
-		$('#device_label').text(name);
-		$('#device_id').val(id);
-		socket.emit('subscribe',{topic:id});
-=======
   var socket = io.connect('http://5.1.2.98:1885');
 socket.emit('choose_room');
 
@@ -139,7 +120,6 @@ function GetCheckedState(elem) {
 	{ 
       for (i = 0; i < controlers_list.length; i++) {
       $("#device_list").append('<li onclick="device_changer(\''+controlers_list[i].name+'\')" id="'+ controlers_list[i].name  +'"><span class="nav_li">'+ controlers_list[i].name +'</span><div class="clear"></div></li>');
->>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 		}
 	}
       $("#device_list").append('</ul>');
@@ -152,12 +132,6 @@ function GetCheckedState(elem) {
 
 	var rooms_list = jQuery.parseJSON(rooms.payload);
 
-<<<<<<< HEAD
-
-
-			document.getElementById (id).value = document.getElementById (id).checked
-=======
->>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 
 
 
@@ -201,11 +175,7 @@ show_controlers_list();
   socket.emit('subscribe', {
     topic: 'outTopic'
   });
-<<<<<<< HEAD
-
-=======
 });
->>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 
 </script>
 
@@ -218,183 +188,9 @@ show_controlers_list();
 
 
 
-<<<<<<< HEAD
-<div class="wrap">
-
-	<div class="grids_of_3">
-		<div class="grid1_of_3">
-			<div class="btn_style bg0">
-				<h4>Пристрої</h4>
-			</div>
-			<div class="menu_box_list">
-				<ul id="device_list" >
-	<li onclick="device_changer(this, 'Люстра')" id="light"><span class="nav_li">Люстра</span> <div class="clear"></div> </li>
-	<li onclick="device_changer(this, 'Бра')" id="mini_light"><span class="nav_li">Бра</span> <div class="clear"></div> </li>
-	<li onclick="device_changer(this, 'Підсвітка')" id="wall_light"><span class="nav_li">Підсвітка</span> <div class="clear"></div> </li>
-	<li onclick="device_changer(this, 'Штора')" id="sunblind"><span class="nav_li">Штора</span> <div class="clear"></div> </li>
-	<li onclick="device_changer(this, 'Ветилятор')" id="fan"><span class="nav_li">Ветилятор</span> <div class="clear"></div> </li>
-	<li onclick="device_changer(this, 'Зволожувач')" id="moisturizer"><span class="nav_li">Зволожувач</span> <div class="clear"></div></li>
-
-				</ul>
-				<div class="clear"></div>
-			</div>
-		</div>
-		<div class="grid1_of_3 left">
-			<div class="btn_style bg">
-				<h4>Пристрій</h4>
-			</div>
-			<div class="login_form" id="device_div">
-				<div class="row demo">
-					<input type="hidden" id=device_id value="">
-					<label id="device_label" class="device_style"></label>
-					<input name="device" id="device" class="cbx hidden" checked="" type="checkbox" onchange="GetCheckedState (this)">
-					<label for="device" class="lbl"></label>
-
-
-				</div>
-			</div>
-			<div class="soc_icons">
-				<ul>
-					<li><a class="icon_1" href="#"></a></li>
-					<li><a class="icon_2" href="#"></a></li>
-					<li><a class="icon_3" href="#"></a></li>
-					<li><a class="icon_4" href="#"></a></li>
-				</ul>	
-			</div>
-		</div>
-		<div class="grid1_of_3 left">
-			<div class="btn_style bg1">
-				<h4>Web-cam</h4>
-			</div>
-			<div class="grid_img1">
-				<img src="http://46.164.174.161:8081" alt="">
-			</div>
-				
-			<div class="grids_left">
-				
-				<div class="clear"></div>
-			
-			</div>
-		</div>
-		<div class="clear"></div>
-		<div class="grid1_of_3">
-			<div class="btn_style bg2">
-				<ul>
-					<li>
-						<p>День</p>
-						<span id="cDay"><script>gettDay();</script></span>
-					</li>
-					<li>
-						<p>Місяць</p>
-						<span id="cMonth"><script>gettMonth();</script></span>
-					</li>
-				</ul>
-			</div>
-			<div class="chart">
-			<canvas id="canvas" height="250" width="295" style="margin-top: 30px; width: 295px; height: 250px;"></canvas>
-				<script>
-
-var x = chartData("x");
-var y = chartData("y");
-var d = new Date();
-var n = d.getDate();
-var m = d.getMonth()+1;
-var cur_date = n+"."+m;
-var cur_date= [];
-var p = n+4;
-for (n; n < p; n++) {
-var xd = cur_date.push(n+"."+m);}
-
-alert(cur_date);
-
-
-var lineChartData = {labels : cur_date,
-						datasets : [
-							{
-								fillColor : "rgba(220,220,220,0.5)",
-								strokeColor : "rgba(220,220,220,1)",
-								pointColor : "rgba(220,220,220,1)",
-								pointStrokeColor : "#fff",
-
-data : x
-							},
-							{
-								fillColor : "rgba(151,187,205,0.5)",
-								strokeColor : "rgba(151,187,205,1)",
-								pointColor : "rgba(151,187,205,1)",
-								pointStrokeColor : "#fff",
-								data : y
-							}
-						]
-						
-					}
-			
-				var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
-				
-				</script>
-			</div>
-		</div>
-		<div class="grid1_of_3 left">
-			<div class="btn_style bg3">
-				<h4>Температура</h4>
-			</div>
-			<div class="loader_main">
-					<div class="outc c">
-					  <small class="c a"></small>
-					  <small class="c b"></small>
-					  <small class="c d"></small>
-					  <small class="c e"></small>
-					  <div class="spinner">
-					  <div class="spinner-inner"></div>
-					  <div class="spinner-mask"></div>
-					  <div class="spinner-mask-two"></div>
-					</div>
-					  <div class="innerc c"><img src="images/loader.png" alt="">  </div>
-					</div>
-				<div class="loader_top">
-					<span id='mqt'>вимірюю...</span>
-					
-				<div class="clear"></div>
-			</div>
-			</div>
-		</div>
-		<div class="grid1_of_3 left">
-			<div class="btn_style bg4">
-				<h4>location</h4>
-			</div>
-			<div class="locate" >
-				<p id="forecast"> Погода 					сьогодні:</p>
-				<p id="forecast_t"> Погода на 					завтра:</p>
-			</div>
-				<div class="clear"></div>
-			</div>
-
-		</div>
-	<div class="clear"></div>
-	<!---728x90
-
-01d	01n	Чистое небо
-02d	02n	Малооблачно
-03d	03n	Рваная облачность
-04d	04n	Облачно с прояснениями
-09d	09n	Ливневый дождь
-10d	10n	Дождь
-11d	11n	Гроза
-13d	13n	Снег
-50d	50n	Туман 
-
---->
-
-	<div class="copy">
-
-	</div>
-	</div>
-	<!---728x90--->
-=======
   <div class="wrap">
 <nav>
 <a href="#menu" id="toggle"><span></span></a>
->>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 
 <div id="menu">
   
@@ -564,9 +360,5 @@ data : x
 
 </body>
 
-<<<<<<< HEAD
-    </html>
-
-=======
 </html>
->>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
+
