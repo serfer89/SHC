@@ -1,17 +1,3 @@
-
-<<<<<<< HEAD
-function getWeather() {
-
-    $.getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=Kyiv&appid=d01946c71f847270df726ba46cc786b6&mode=json&units=metric&cnt=7",function(result){
-               
-var result_html = "Погода 					сьогодні: <br><span>"+result.list[0].temp.day+" &#8451;</span><img  alt='"+result.list[0].weather[0].description+"' src=http://openweathermap.org/img/w/"+result.list[0].weather[0].icon+".png >";
-var result_html_t = "Погода на 					завтра: <br><span>"+result.list[1].temp.day+" &#8451; </span><img  alt='"+result.list[1].weather[0].description+"' src=http://openweathermap.org/img/w/"+result.list[1].weather[0].icon+".png >";
-$('#forecast').html(result_html);
-$('#forecast_t').html(result_html_t);
-});
-
-}
-
 function chartData(pointer)
 
 {
@@ -43,7 +29,6 @@ return data;
 
 }
 
-=======
 
 function get_controllers(id, name){
 	$("#room_label").html('<h4>'+name+'</h4>');
@@ -171,7 +156,6 @@ $('#forecast_t').html(result_html_t);
 }
 
 
->>>>>>> 1669cbccefc5215f6e5156ef77b00747da1f9ffa
 function gettMonth(month)
 {
 
