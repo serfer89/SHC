@@ -83,7 +83,7 @@ function GetCheckedState(elem) {
       payload: "1"
     });
     socket.emit('publish', {
-      topic: "inTopic",
+      topic: "1/Кухня/Світло",
       payload: "1"
     });
   } else {
@@ -92,7 +92,7 @@ function GetCheckedState(elem) {
       payload: "0"
     });
     socket.emit('publish', {
-      topic: "inTopic",
+      topic: "1/Кухня/Світло",
       payload: "0"
     });
   }
@@ -173,7 +173,7 @@ show_controlers_list();
     }
   });
   socket.emit('subscribe', {
-    topic: 'outTopic'
+    topic: '1/Кухня/Температура'
   });
 });
 
