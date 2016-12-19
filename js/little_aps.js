@@ -35,10 +35,11 @@ function get_controllers(id, name){
   socket.emit('choose_controllers', { room_id: id});
   var coockied_name = document.cookie;
   socket.emit('unsubscribe', {topic: coockied_name});
+  console.log("unsubscribed "+coockied_name);
   coockied_name = '1/'+name+'/Температура1';
   document.cookie = coockied_name;
   socket.emit('subscribe', {topic: coockied_name});
-  console.log("subcribed"+name);
+  console.log("subcribed "+name);
   }
 
 
