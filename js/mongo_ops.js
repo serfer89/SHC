@@ -50,7 +50,7 @@ f_topic = topic;
 f_topic = parseInt(f_topic);
     console.log(f_topic);
   // Update document where a is 2, set b equal to 1
-  collection.updateOne({ id : topic }
+  collection.updateOne({ id : f_topic }
 		     , { $set: { state : payload }  }
 		      ,{upsert: true, safe: false}
 		     , function(err, result) {
