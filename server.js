@@ -112,7 +112,7 @@ io.sockets.on('connection', function(socket) {
 
 
       collection.find({
-        name: data.topic
+        id: data.topic
       }).toArray(function(err, docs) {
 
         console.log("Found " + docs.length + " records");

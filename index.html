@@ -119,7 +119,7 @@ function GetCheckedState(elem) {
  else
 	{ 
       for (i = 0; i < controlers_list.length; i++) {
-      $("#device_list").append('<li onclick="device_changer(\''+controlers_list[i].name+'\')" id="'+ controlers_list[i].id  +'"><span class="nav_li">'+ controlers_list[i].name +'</span><div class="clear"></div></li>');
+      $("#device_list").append('<li onclick="device_changer(\''+controlers_list[i].id+'\')" id="'+ controlers_list[i].id  +'"><span class="nav_li">'+ controlers_list[i].name +'</span><div class="clear"></div></li>');
 		}
 	}
       $("#device_list").append('</ul>');
