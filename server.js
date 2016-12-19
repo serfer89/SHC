@@ -111,7 +111,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('device_state', function(data) {
 console.log("data topic "+data.topic);
 f_topic = data.topic;
-f_topic = f_topic.toString();
+f_topic = parseInt(f_topic);
       collection.find({
         id: f_topic
       }).toArray(function(err, docs) {
