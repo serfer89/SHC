@@ -149,7 +149,7 @@ f_topic = parseInt(f_topic);
       client.publish(data.topic, data.payload);
 
       var op = 'update';
-      var op = new query.mdb(op, data.topic, data.payload);
+      var op = new query.mdb(op, payload[0], payload[1]);
       op.view();
 
 
