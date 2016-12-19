@@ -110,14 +110,16 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('device_state', function(data) {
 console.log("data topic "+data.topic);
-data.topic = data.topic.toString();
+f_topic = data.topic;
+f_topic = f_topic.toString();
       collection.find({
-        id: data.topic
+        id: f_topic
       }).toArray(function(err, docs) {
 
         console.log("Found " + docs.length + " records");
         //console.dir(docs);
         //callback(docs.length);
+	if (docs.length > 0){
         x_state = docs[0].state;
         console.log("too " + x_state);
         io.sockets.emit('mqtt', {
@@ -125,8 +127,8 @@ data.topic = data.topic.toString();
           'payload': String(x_state)
         });
         console.log("device_state_ans go.. " + x_state + data.topic);
-
-
+	}
+	else {console.log("Found "+docs.length);}
       });
       /*
         console.log('get to '+data.topic+" the "+data.payload);
