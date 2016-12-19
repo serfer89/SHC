@@ -142,6 +142,9 @@ f_topic = parseInt(f_topic);
     // the the mqtt broker
     socket.on('publish', function(data) {
       console.log('Publishing to ' + data.topic);
+      payload = data.payload;
+      payload=payload.split("/");
+      data.payload = payload[0]+"/"+payload[1]; 
       client.publish(data.topic, data.payload);
 
       var op = 'update';

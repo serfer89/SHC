@@ -75,25 +75,20 @@ function GetCheckedState(elem) {
 
 
   document.getElementById(id).value = document.getElementById(id).checked
-
+room_name = document.cookie; 
+room_name = room_name.split("/");
 
   if (elem.value == "true") {
     socket.emit('publish', {
-      topic: $('#device_id').val(),
-      payload: "1"
+      topic: room_name[1],
+      payload: $('#device_id').val()+"/1"
     });
-    socket.emit('publish', {
-      topic: "1/Кухня/Світло",
-      payload: "1"
-    });
+
   } else {
+
     socket.emit('publish', {
-      topic: $('#device_id').val(),
-      payload: "0"
-    });
-    socket.emit('publish', {
-      topic: "1/Кухня/Світло",
-      payload: "0"
+      topic: room_name[1],
+      payload: $('#device_id').val()+"/0"
     });
   }
 
