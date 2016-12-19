@@ -109,7 +109,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('device_state', function(data) {
-
+console.log("data topic "+data.topic);
 
       collection.find({
         id: data.topic
