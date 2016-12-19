@@ -110,7 +110,7 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('device_state', function(data) {
 console.log("data topic "+data.topic);
-
+data.topic = data.topic.toString();
       collection.find({
         id: data.topic
       }).toArray(function(err, docs) {
