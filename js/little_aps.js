@@ -33,7 +33,11 @@ return data;
 function get_controllers(id, name){
 	$("#room_label").html('<h4>'+name+'</h4>');
   socket.emit('choose_controllers', { room_id: id});
-  socket.emit('subscribe', {topic: '1/'+name+'/Температура1'});
+  var coockied_name = document.cookie;
+  socket.emit('unsubscribe', {topic: coockied_name});
+  coockied_name = '1/'+name+'/Температура1';
+  document.cookie = coockied_name;
+  socket.emit('subscribe', {topic: coockied_name});
   console.log("subcribed"+name);
   }
 
