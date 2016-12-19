@@ -32,11 +32,12 @@ return data;
 
 function get_controllers(id, name){
 	$("#room_label").html('<h4>'+name+'</h4>');
-  socket.emit('choose_controllers', {
-    room_id: id
-  });
+  socket.emit('choose_controllers', { room_id: id});
+  socket.emit('subscribe', {topic: '1/'+name+'/Температура1'});
+  console.log("subcribed"+name);
+  }
 
-}
+
 
 function toggler(){
 var theToggle = document.getElementById('toggle');
