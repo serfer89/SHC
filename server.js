@@ -144,6 +144,7 @@ f_topic = parseInt(f_topic);
       console.log('Publishing to ' + data.topic);
       payload = data.payload;
       payload=payload.split("/");
+      console.log(payload[0]+"/"+payload[1]);
       data.payload = payload[0]+"/"+payload[1]; 
       client.publish(data.topic, data.payload);
 
