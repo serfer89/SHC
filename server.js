@@ -91,7 +91,14 @@ io.sockets.on('connection', function(socket) {
     collection = db.collection('controlers');
     //mongo.db end
     // socket connection indicates what mqtt topic to subscribe to in data.topic
-    socket.on('subscribe', function(data) {
+     socket.on('unsubscribe', function(data) {
+      console.log('Unsubscribing to ' + data.topic);
+     socket.leave(data.topic);
+      client.unsubscribe(data.topic);
+    });
+
+
+      socket.on('subscribe', function(data) {
       console.log('Subscribing to ' + data.topic);
       socket.join(data.topic);
       client.subscribe(data.topic);
