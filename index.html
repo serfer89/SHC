@@ -49,9 +49,9 @@ alert(id);
   }
 });
 
-function device_changer(id) {
+function device_changer(id, name) {
 
-  var name = id;
+alert(id+" - "+name);
   socket.emit('device_state', {
     topic: id,
     payload: id
@@ -63,9 +63,9 @@ function device_changer(id) {
 
   $('#device_label').text(name);
   $('#device_id').val(id);
-  socket.emit('subscribe', {
+ /* socket.emit('subscribe', {
     topic: id
-  });
+  });*/
 }
 
 
@@ -75,25 +75,20 @@ function GetCheckedState(elem) {
 
 
   document.getElementById(id).value = document.getElementById(id).checked
-
+room_name = document.cookie; 
+room_name = room_name.split("/");
 
   if (elem.value == "true") {
     socket.emit('publish', {
-      topic: $('#device_id').val(),
-      payload: "1"
+      topic: room_name[1],
+      payload: $('#device_id').val()+"/1"
     });
-    socket.emit('publish', {
-      topic: "1/Кухня/Світло",
-      payload: "1"
-    });
+
   } else {
+
     socket.emit('publish', {
-      topic: $('#device_id').val(),
-      payload: "0"
-    });
-    socket.emit('publish', {
-      topic: "1/Кухня/Світло",
-      payload: "0"
+      topic: room_name[1],
+      payload: $('#device_id').val()+"/0"
     });
   }
 
@@ -119,7 +114,7 @@ function GetCheckedState(elem) {
  else
 	{ 
       for (i = 0; i < controlers_list.length; i++) {
-      $("#device_list").append('<li onclick="device_changer(\''+controlers_list[i].name+'\')" id="'+ controlers_list[i].name  +'"><span class="nav_li">'+ controlers_list[i].name +'</span><div class="clear"></div></li>');
+      $("#device_list").append('<li onclick="device_changer('+controlers_list[i].id+', '+'\''+controlers_list[i].name+'\''+')" id="'+ controlers_list[i].id  +'"><span class="nav_li">'+ controlers_list[i].name +'</span><div class="clear"></div></li>');
 		}
 	}
       $("#device_list").append('</ul>');

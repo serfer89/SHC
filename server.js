@@ -109,15 +109,17 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('device_state', function(data) {
-
-
+console.log("data topic "+data.topic);
+f_topic = data.topic;
+f_topic = parseInt(f_topic);
       collection.find({
-        name: data.topic
+        id: f_topic
       }).toArray(function(err, docs) {
 
         console.log("Found " + docs.length + " records");
         //console.dir(docs);
         //callback(docs.length);
+	if (docs.length > 0){
         x_state = docs[0].state;
         console.log("too " + x_state);
         io.sockets.emit('mqtt', {
@@ -125,8 +127,8 @@ io.sockets.on('connection', function(socket) {
           'payload': String(x_state)
         });
         console.log("device_state_ans go.. " + x_state + data.topic);
-
-
+	}
+	else {console.log("Found "+docs.length);}
       });
       /*
         console.log('get to '+data.topic+" the "+data.payload);
@@ -140,10 +142,14 @@ io.sockets.on('connection', function(socket) {
     // the the mqtt broker
     socket.on('publish', function(data) {
       console.log('Publishing to ' + data.topic);
+      payload = data.payload;
+      payload=payload.split("/");
+      console.log(payload[0]+"/"+payload[1]);
+      data.payload = payload[0]+"/"+payload[1]; 
       client.publish(data.topic, data.payload);
 
       var op = 'update';
-      var op = new query.mdb(op, data.topic, data.payload);
+      var op = new query.mdb(op, payload[0], payload[1]);
       op.view();
 
 

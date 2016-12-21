@@ -16,11 +16,15 @@ var insertDocuments = function(db, callback) {
   var collection = db.collection('controlers');
   // Insert some documents
   collection.insertMany([
-    {name : "sunblind", state : 1} , {name : "wall_light", state : 1}
+
+
+
+{id : 7, name : "Світильник над шафою", room_id : 5, state : 0 }, 
+
   ], function(err, result) {
     assert.equal(err, null);
-    assert.equal(2, result.result.n);
-    assert.equal(2, result.ops.length);
+    assert.equal(1, result.result.n);
+    assert.equal(1, result.ops.length);
     console.log("Inserted 3 documents into the document collection");
     callback(result);
   });
@@ -71,7 +75,7 @@ var findDocuments = function(db, callback) {
 }
 
 
- findDocuments(db, function() {
+ insertDocuments(db, function() {
 console.log(); db.close();
 /*
 
