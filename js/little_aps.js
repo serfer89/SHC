@@ -36,7 +36,7 @@ function get_controllers(id, name){
   var coockied_name = document.cookie;
   socket.emit('unsubscribe', {topic: coockied_name});
   console.log("unsubscribed "+coockied_name);
-  coockied_name = '1/'+name+'/Температура1';
+  coockied_name = name+'/Температура';
   document.cookie = coockied_name;
   socket.emit('subscribe', {topic: coockied_name});
   console.log("subcribed "+name);
