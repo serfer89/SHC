@@ -86,6 +86,36 @@ io.sockets.on('connection', function(socket) {
 
 
 
+// startup function
+
+    socket.on('startup', function(data) {
+
+      db.collection('controlers').find({
+        room_id: data.room_id
+      }).toArray(function(err, controlers) {
+
+        console.log("Found " + controlers.length + " controlers records with "+ data. room_id);
+	//var jstr = JSON.stringify(controlers);
+
+
+	for(var i = 0; i < controlers.length; i++)
+
+	    {console.log(i);}
+       /* io.sockets.emit('controlers_list', {
+          'topic': 'controlers_list',
+          'payload': String(jstr)
+        });
+        */
+
+      });
+     
+
+    });
+
+
+
+
+
 
 
     collection = db.collection('controlers');
