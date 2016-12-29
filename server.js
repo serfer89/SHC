@@ -89,12 +89,12 @@ io.sockets.on('connection', function(socket) {
 // startup function
 
     socket.on('startup', function(data) {
-      console.log(data.payload);
+      console.log(data.topic);
       db.collection('rooms').find({
-        name: data.payload
+        name: data.topic
       }).toArray(function(err, rooms) {
 
-        console.log("Found " + rooms.length + " controlers records with "+ data.payload);
+        console.log("Found " + rooms.length + " controlers records with "+ data.topic);
 	//var jstr = JSON.stringify(controlers);
 
 
