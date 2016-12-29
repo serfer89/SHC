@@ -100,9 +100,10 @@ io.sockets.on('connection', function(socket) {
 
 // подписываемся на комнату взятую из "function get_controllers" little_aps.js
       socket.on('subscribe', function(data) {
-      console.log('Subscribing to ' + data.topic);
-      socket.join(data.topic);
-      client.subscribe(data.topic);
+      r_topic = data.topic;
+      console.log('Subscribing to ' + r_topic);
+      socket.join('#');
+      client.subscribe('#');
 
 
 
