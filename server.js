@@ -12,7 +12,7 @@ var options = {
   protocolVersion: 3
 };
 
-
+var r_topic="";
 
 
 
