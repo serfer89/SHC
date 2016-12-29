@@ -164,7 +164,8 @@ show_controlers_list();
         }
       }
     } else {
-      $('#mqt').text(msg.payload);
+
+	if (document.cookie == msg.topic) {$('#mqt').text(msg.payload);console.log("right msg");} else {console.log("wrong msg");}
     }
   });
 
