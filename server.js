@@ -100,7 +100,7 @@ io.sockets.on('connection', function(socket) {
 
 	for(var i = 0; i < rooms.length; i++)
 
-	    {console.log(i);}
+	    {console.log(rooms.id);}
        /* io.sockets.emit('controlers_list', {
           'topic': 'controlers_list',
           'payload': String(jstr)
