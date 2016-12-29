@@ -100,7 +100,34 @@ io.sockets.on('connection', function(socket) {
 
 	for(var i = 0; i < rooms.length; i++)
 
-	    {console.log(rooms[i]. id);}
+	    {console.log(rooms[i]. id);
+
+
+      db.collection('controlers').find({
+        room_id: rooms[i]. id
+      }).toArray(function(err, start_state) {
+
+        console.log("Found " + start_state.length + " controlers records with "+ rooms[i]. id);
+	//var jstr = JSON.stringify(controlers);
+
+
+	for(var i = 0; i < start_state.length; i++)
+
+	    {console.log(start_state[i]. name);
+
+
+
+
+}
+       /* io.sockets.emit('controlers_list', {
+          'topic': 'controlers_list',
+          'payload': String(jstr)
+        });
+        */
+
+      });
+
+}
        /* io.sockets.emit('controlers_list', {
           'topic': 'controlers_list',
           'payload': String(jstr)
