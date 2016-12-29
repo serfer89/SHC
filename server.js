@@ -89,16 +89,16 @@ io.sockets.on('connection', function(socket) {
 // startup function
 
     socket.on('startup', function(data) {
+      console.log(data.payload);
+      db.collection('rooms').find({
+        name: data.payload
+      }).toArray(function(err, rooms) {
 
-      db.collection('controlers').find({
-        room_id: data.room_id
-      }).toArray(function(err, controlers) {
-
-        console.log("Found " + controlers.length + " controlers records with "+ data. room_id);
+        console.log("Found " + rooms.length + " controlers records with "+ data.payload);
 	//var jstr = JSON.stringify(controlers);
 
 
-	for(var i = 0; i < controlers.length; i++)
+	for(var i = 0; i < rooms.length; i++)
 
 	    {console.log(i);}
        /* io.sockets.emit('controlers_list', {
