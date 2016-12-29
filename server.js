@@ -102,7 +102,7 @@ io.sockets.on('connection', function(socket) {
       socket.on('subscribe', function(data) {
       r_topic = data.topic;
       console.log('Subscribing to ' + r_topic);
-      socket.join('#');
+      socket.join(data.topic);
       client.subscribe('#');
 
 
