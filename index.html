@@ -149,6 +149,10 @@ show_controlers_list();
 
   socket.on('mqtt', function(msg) {
 
+	if (msg.payload=="startup"){socket.emit('startup', {topic: msg.topic}); console.log("device on");}
+
+
+
     console.log(msg.topic + ' ' + msg.payload);
     if (msg.payload == "1" || msg.payload == "0") {
 
@@ -165,7 +169,7 @@ show_controlers_list();
       }
     } else {
 
-	if (document.cookie == msg.topic) {$('#mqt').text(msg.payload);console.log("right msg");} else {console.log("wrong msg");}
+	if (document.cookie == msg.topic) {$('#mqt').text(msg.payload);console.log("right msg");} else {console.log("wrong msg");} // якщо не той топік, що вказано в кукі - просто відкидається.
     }
   });
 
