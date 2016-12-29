@@ -107,7 +107,7 @@ io.sockets.on('connection', function(socket) {
         room_id: rooms[i]. id
       }).toArray(function(err, start_state) {
 
-        console.log("Found " + start_state.length + " controlers records with "+ rooms[i]. id);
+        console.log("Found " + start_state.length + " controlers records");
 	//var jstr = JSON.stringify(controlers);
 
 
