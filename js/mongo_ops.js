@@ -3,7 +3,6 @@ function mdb(op, topic, payload){
     this.op = op;
     this.topic = topic;
     this.payload = payload;
-
     this.x_state = 101;
 }
 //Добавим еще один метод для вывода имени
@@ -63,7 +62,6 @@ f_topic = parseInt(f_topic);
 }
 
 
-
 var deleteDocument = function(db, callback) {
   // Get the documents collection
   var collection = db.collection('controlers');
@@ -94,10 +92,8 @@ var findDocuments = function(db, callback) {
 
 switch (op) {
   case 'update':
-console.log("start update...")
      updateDocument(db, function() {
  db.close()});
-console.log("finish update...")
     break;
   case 'delete':
      deleteDocument(db, function() {
