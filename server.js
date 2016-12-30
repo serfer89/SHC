@@ -114,10 +114,14 @@ io.sockets.on('connection', function(socket) {
 	for(var i = 0; i < start_state.length; i++)
 
 	    {console.log(start_state[i]. name+" in "+ data.topic);
-		io.sockets.emit('mqtt', {
+
+
+	      client.publish(data.topic, String(start_state[i]. id+"/"+start_state[i]. state);
+
+		/*io.sockets.emit('mqtt', {
           'topic': String(data.topic),
           'payload': String(start_state[i]. id+"/"+start_state[i]. state)
-        });
+        });*/
 
 
 
