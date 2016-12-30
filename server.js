@@ -193,9 +193,14 @@ io.sockets.on('connection', function(socket) {
             data.payload = payload[0] + "/" + payload[1];
             client.publish(data.topic, data.payload);
             console.log("Room - "+r_topic);
+
             var op = 'update';
-            var op = new query.mdb(op, payload[0], payload[1]);
+            db.collection('rooms').find({
+                name: r_topic
+            }).toArray(function(err, rooms) {
+            var op = new query.mdb(op, payload[0], payload[1], rooms[0].id);
             op.view();
+		});
 
 
             // socket.io end
