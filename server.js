@@ -202,7 +202,7 @@ io.sockets.on('connection', function(socket) {
             payload[1] = payload[1]+"/"+rooms[0].id;
             var op = new query.mdb(op, payload[0], payload[1]);
             op.view();
-            console.log("Room up - "+payload[1];
+            console.log("Room up - "+payload[1]);
 		});
 
 
