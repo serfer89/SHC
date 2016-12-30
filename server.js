@@ -198,6 +198,7 @@ io.sockets.on('connection', function(socket) {
             db.collection('rooms').find({
                 name: s_topic[0]
             }).toArray(function(err, rooms) {
+            console.log("Room id - "+rooms[0].id);
             var op = new query.mdb(op, payload[0], payload[1], rooms[0].id);
             op.view();
 		});
