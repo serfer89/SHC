@@ -199,7 +199,7 @@ io.sockets.on('connection', function(socket) {
                 name: s_topic[0]
             }).toArray(function(err, rooms) {
             console.log("Room id - "+rooms[0].id);
-            payload[1] = payload[1]+"/"+rooms[0].id;
+            payload[1] = payload[0]+"/"+rooms[0].id;
             var op = new query.mdb(op, payload[0], payload[1]);
             op.view();
             console.log("Room up - "+payload[1]);
