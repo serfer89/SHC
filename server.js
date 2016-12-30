@@ -116,7 +116,7 @@ io.sockets.on('connection', function(socket) {
 	    {console.log(start_state[i]. name+" in "+ data.topic);
 
 
-	      client.publish(data.topic, String(start_state[i]. id+"/"+start_state[i]. state);
+	      client.publish(data.topic, String(start_state[i]. id+"/"+start_state[i]. state));
 
 		/*io.sockets.emit('mqtt', {
           'topic': String(data.topic),
