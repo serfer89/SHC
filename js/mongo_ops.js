@@ -47,14 +47,16 @@ var insertDocuments = function(db, callback) {
 var updateDocument = function(db, callback) {
   // Get the documents collection
   var collection = db.collection('controlers');
-f_topic = topic;
+console.log("device id");
+
+/*f_topic = topic;
 f_topic = parseInt(f_topic);
 payload=payload.split("/");
 payload[0] = parseInt(payload[0]);
 payload[1] = parseInt(payload[1]);
-    console.log("device id - "+f_topic+ "room_id - "+room_idi);
+    console.log("device id - "+f_topic+ "room_id - "+payload[1]);
   // Update document where a is 2, set b equal to 1
-/*  collection.updateOne({ id : f_topic,  room_id : payload[1] }
+  collection.updateOne({ id : f_topic,  room_id : payload[1] }
 		     , { $set: { state : payload[0] }  }
 		      ,{upsert: true, safe: false}
 		     , function(err, result) {
