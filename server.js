@@ -208,7 +208,7 @@ socket.on('publish', function(data) {
       var op = 'update';
       var op = new query.mdb(op, payload[0], payload[1]);
       op.view();
-
+       });
 
             // socket.io end
         });
