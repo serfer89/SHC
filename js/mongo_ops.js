@@ -53,7 +53,7 @@ payload = payload.split("/")
 
   // Update document where a is 2, set b equal to 1
   collection.updateOne({ id : f_topic,  room_id : payload[1] }
-		     , { $set: { state : payload }  }
+		     , { $set: { state : payload[0] }  }
 		      ,{upsert: true, safe: false}
 		     , function(err, result) {
     assert.equal(err, null);
