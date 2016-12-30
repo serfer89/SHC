@@ -96,8 +96,10 @@ var findDocuments = function(db, callback) {
 
 switch (op) {
   case 'update':
+console.log("start update...")
      updateDocument(db, function() {
  db.close()});
+console.log("finish update...")
     break;
   case 'delete':
      deleteDocument(db, function() {
