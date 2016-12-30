@@ -50,8 +50,9 @@ f_topic = topic;
 f_topic = parseInt(f_topic);
 payload = payload.split("/")
     console.log("device id - "+f_topic+" state - "+payload[0]+" room_id - "+payload[1]);
+
   // Update document where a is 2, set b equal to 1
-  collection.updateOne({ id : f_topic }
+  collection.updateOne({ id : f_topic,  room_id : payload[1] }
 		     , { $set: { state : payload }  }
 		      ,{upsert: true, safe: false}
 		     , function(err, result) {
