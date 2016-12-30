@@ -185,25 +185,17 @@ io.sockets.on('connection', function(socket) {
         });
         // when socket connection publishes a message, forward that message
         // the the mqtt broker
-        socket.on('publish', function(data) {
-            console.log('Publishing to ' + data.topic);
-            payload = data.payload;
-            payload = payload.split("/");
-            console.log(payload[0] + "/" + payload[1]);
-            data.payload = payload[0] + "/" + payload[1];
-            client.publish(data.topic, data.payload);
-            s_topic=r_topic.split("/");
-            console.log("Room - "+r_topic+" "+s_topic[0]);
-            var op = 'update';
-            db.collection('rooms').find({
-                name: s_topic[0]
-            }).toArray(function(err, rooms) {
-            console.log("Room id - "+rooms[0].id);
-            payload[1] = payload[1]+"/"+rooms[0].id;
-            var op = new query.mdb(op, payload[0], payload[1]);
-            op.view();
-            console.log("Room up - "+payload[1]);
-		});
+socket.on('publish', function(data) {
+      console.log('Publishing to ' + data.topic);
+      payload = data.payload;
+      payload=payload.split("/");
+      console.log(payload[0]+"/"+payload[1]);
+      data.payload = payload[0]+"/"+payload[1]; 
+      client.publish(data.topic, data.payload);
+
+      var op = 'update';
+      var op = new query.mdb(op, payload[0], payload[1]);
+      op.view();
 
 
             // socket.io end
