@@ -201,6 +201,7 @@ io.sockets.on('connection', function(socket) {
             console.log("Room id - "+rooms[0].id);
             var op = new query.mdb(op, payload[0], payload[1], rooms[0].id);
             op.view();
+            console.log("Room up - "+rooms[0].id);
 		});
 
 
