@@ -1,8 +1,9 @@
 //Создадим объект пользователей
-function mdb(op, topic, payload){
+function mdb(op, topic, payload, room_id){
     this.op = op;
     this.topic = topic;
     this.payload = payload;
+    this.room_id = room_id;
     this.x_state = 101;
 }
 //Добавим еще один метод для вывода имени
@@ -12,7 +13,7 @@ mdb.prototype.view = function(){
 var op = this.op;
 var topic = this.topic;
 var payload = this.payload;
-
+var room_id = this.room_id;
 
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
@@ -50,7 +51,7 @@ f_topic = topic;
 f_topic = parseInt(f_topic);
     console.log("real id - "+f_topic);
   // Update document where a is 2, set b equal to 1
-  collection.updateOne({ id : f_topic }
+  collection.updateOne({ id : f_topic }, { room_id : room_id }
 		     , { $set: { state : payload }  }
 		      ,{upsert: true, safe: false}
 		     , function(err, result) {
