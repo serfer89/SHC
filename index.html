@@ -51,7 +51,6 @@ alert(id);
 
 function device_changer(id, name) {
 
-alert(id+" - "+name);
   socket.emit('device_state', {
     topic: id,
     payload: id
