@@ -192,7 +192,7 @@ io.sockets.on('connection', function(socket) {
             console.log(payload[0] + "/" + payload[1]);
             data.payload = payload[0] + "/" + payload[1];
             client.publish(data.topic, data.payload);
-
+            console.log("Room - "+r_topic);
             var op = 'update';
             var op = new query.mdb(op, payload[0], payload[1]);
             op.view();
