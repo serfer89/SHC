@@ -48,7 +48,8 @@ var updateDocument = function(db, callback) {
   var collection = db.collection('controlers');
 f_topic = topic;
 f_topic = parseInt(f_topic);
-    console.log(f_topic);
+payload = payload.split("/")
+    console.log("device id - "+f_topic+" state - "+payload[0]+" room_id - "+payload[1]);
   // Update document where a is 2, set b equal to 1
   collection.updateOne({ id : f_topic }
 		     , { $set: { state : payload }  }
