@@ -190,8 +190,7 @@ io.sockets.on('connection', function(socket) {
             payload = data.payload;
             payload = payload.split("/");
             console.log(payload[0] + "/" + payload[1]);
-            data.payload = payload[0] + "/" + payload[1];
-            client.publish(data.topic, data.payload);
+
             s_topic = r_topic.split("/");
             console.log("Room - " + r_topic + " " + s_topic[0]);
             var op = 'update';
@@ -205,7 +204,8 @@ io.sockets.on('connection', function(socket) {
                 op.view();
                 console.log("Room up - " + payload[1]);
 
-
+            data.payload = payload[0] + "/" + payload[1]+"/"+room_id;
+            client.publish(data.topic, data.payload);
                 var op = 'update';
                 var op = new query.mdb(op, payload[0], payload[1]);
                 op.view();
