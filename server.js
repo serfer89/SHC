@@ -14,7 +14,7 @@ var options = {
 
 var r_topic = "";
 var room_id = "";
-
+var msg="";
 
 // create a socket object that listens on port 3000
 var io = require('socket.io').listen(3000);
@@ -203,6 +203,7 @@ io.sockets.on('connection', function(socket) {
                 data.payload = payload[0] + "/" + payload[1];
                 client.publish(data.topic, data.payload);
                 console.log("Goo" + payload[0] + "/" + payload[1]);
+                msg = payload[0] + "/" + payload[1];
                 //good_answer(payload[0], payload[1]);
                 var op = 'update';
                 var op = new query.mdb(op, payload[0], payload[1]);
@@ -212,10 +213,28 @@ io.sockets.on('connection', function(socket) {
 
             // socket.io end
         });
+
+client.on('answer', function(topic, payload, packet) {
+    console.log(topic + '-' + payload);
+
+
+               /* var op = 'update';
+                var op = new query.mdb(op, payload[0], payload[1]);
+                op.view();
+                console.log("Room up - " + payload[1]);
+
+    io.sockets.emit('mqtt', {
+        'topic': String(topic),
+        'payload': String(payload)
+    });*/
+});
+
+
+
     });
 });
 
-//function good_answer
+
 
 // listen to messages coming from the mqtt broker
 client.on('message', function(topic, payload, packet) {
