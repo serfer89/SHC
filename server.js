@@ -202,7 +202,7 @@ io.sockets.on('connection', function(socket) {
                 payload[1] = payload[1] + "/" + rooms[0].id;
                 data.payload = payload[0] + "/" + payload[1];
                 client.publish(data.topic, data.payload);
-                console.log("Goo" - payload[0] + "/" + payload[1]);
+                console.log("Goo" + payload[0] + "/" + payload[1]);
                 //good_answer(payload[0], payload[1]);
                 var op = 'update';
                 var op = new query.mdb(op, payload[0], payload[1]);
