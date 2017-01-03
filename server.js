@@ -189,7 +189,7 @@ io.sockets.on('connection', function(socket) {
             console.log('Publishing to ' + data.topic);
             payload = data.payload;
             payload = payload.split("/");
-            console.log(payload[0] + "/" + payload[1]);
+
 
             s_topic = r_topic.split("/");
             console.log("Room - " + r_topic + " " + s_topic[0]);
@@ -200,21 +200,22 @@ io.sockets.on('connection', function(socket) {
                 room_id=rooms[0].id;
                 console.log("Room id - " + room_id);
                 payload[1] = payload[1] + "/" + rooms[0].id;
-                var op = new query.mdb(op, payload[0], payload[1]);
-                op.view();
-                console.log("Room up - " + payload[1]);
-
-            data.payload = payload[0] + "/" + payload[1]+"/"+room_id;
-            client.publish(data.topic, data.payload);
+                data.payload = payload[0] + "/" + payload[1];
+                client.publish(data.topic, data.payload);
+                console.log("Goo" - payload[0] + "/" + payload[1]);
+                //good_answer(payload[0], payload[1]);
                 var op = 'update';
                 var op = new query.mdb(op, payload[0], payload[1]);
                 op.view();
+                console.log("Room up - " + payload[1]);
             });
 
             // socket.io end
         });
     });
 });
+
+//function good_answer
 
 // listen to messages coming from the mqtt broker
 client.on('message', function(topic, payload, packet) {
