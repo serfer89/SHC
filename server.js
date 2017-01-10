@@ -239,6 +239,7 @@ client.on('answer', function(topic, payload, packet) {
 // listen to messages coming from the mqtt broker
 client.on('message', function(topic, payload, packet) {
     console.log(topic + '=' + payload);
+    payload = String(payload);
     payload = payload.split("/");
     if (payload[0] == 's') {console.log("Succsessful");}
     else {
