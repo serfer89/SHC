@@ -47,9 +47,6 @@ function get_controllers(id, name){
 function toggler(){
 var theToggle = document.getElementById('toggle');
 
-// based on Todd Motto functions
-// http://toddmotto.com/labs/reusable-js/
-
 // hasClass
 function hasClass(elem, className) {
 	return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
