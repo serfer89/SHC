@@ -241,7 +241,11 @@ client.on('message', function(topic, payload, packet) {
     console.log(topic + '=' + payload);
     payload = String(payload);
     payload = payload.split("/");
-    if (payload[0] == 's') {console.log("Succsessful");}
+    if (payload[0] == 's') {
+ var op = 'update';
+                var op = new query.mdb(op, payload[1], payload[2]);
+                op.view();
+console.log("Succsessful");}
     else {
     io.sockets.emit('mqtt', {
         'topic': String(topic),
