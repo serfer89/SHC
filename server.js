@@ -215,7 +215,7 @@ io.sockets.on('connection', function(socket) {
         });
 
 client.on('answer', function(topic, payload, packet) {
-    console.log(topic + '-' + payload);
+    console.log('answer' + topic + '-' + payload);
 
 
                /* var op = 'update';
@@ -239,8 +239,11 @@ client.on('answer', function(topic, payload, packet) {
 // listen to messages coming from the mqtt broker
 client.on('message', function(topic, payload, packet) {
     console.log(topic + '=' + payload);
+    payload = payload.split("/");
+    if (payload[0] == 's') {console.log("Succsessful");}
+    else {
     io.sockets.emit('mqtt', {
         'topic': String(topic),
         'payload': String(payload)
-    });
+    });}
 });
