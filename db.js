@@ -13,7 +13,7 @@ MongoClient.connect(url, function(err, db) {
 
 var insertDocuments = function(db, callback) {
   // Get the documents collection
-  var collection = db.collection('controlers');
+  var collection = db.collection('controllers');
   // Insert some documents
   collection.insertMany([
 
@@ -33,7 +33,7 @@ var insertDocuments = function(db, callback) {
 
 var updateDocument = function(db, callback) {
   // Get the documents collection
-  var collection = db.collection('controlers');
+  var collection = db.collection('controllers');
   // Update document where a is 2, set b equal to 1
   collection.updateOne({ name : "sunblind" }
 		     , { $set: { state : 1 }  }
@@ -49,7 +49,7 @@ var updateDocument = function(db, callback) {
 
 var deleteDocument = function(db, callback) {
   // Get the documents collection
-  var collection = db.collection('controlers');
+  var collection = db.collection('controllers');
   // Insert some documents
   collection.deleteOne({ name : "sunblind" }, function(err, result) {
     assert.equal(err, null);
@@ -62,7 +62,7 @@ var deleteDocument = function(db, callback) {
 
 var findDocuments = function(db, callback) {
   // Get the documents collection
-  var collection = db.collection('controlers');
+  var collection = db.collection('controllers');
   // Find some documents
   collection.find({name : 'light'}).toArray(function(err, docs) {
 
