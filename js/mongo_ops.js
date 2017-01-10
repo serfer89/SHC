@@ -29,7 +29,7 @@ MongoClient.connect(url, function(err, db) {
 
 var insertDocuments = function(db, callback) {
   // Get the documents collection
-  var collection = db.collection('controlers');
+  var collection = db.collection('controllers');
   // Insert some documents
   collection.insertMany([
     {name : "sunblind", state : 1} , {name : "wall_light", state : 1}
@@ -45,7 +45,7 @@ var insertDocuments = function(db, callback) {
 
 var updateDocument = function(db, callback) {
   // Get the documents collection
-  var collection = db.collection('controlers');
+  var collection = db.collection('controllers');
 f_topic = topic;
 f_topic = parseInt(f_topic);
 payload = payload.split("/")
@@ -67,7 +67,7 @@ payload[0]=String(payload[0]);
 
 var deleteDocument = function(db, callback) {
   // Get the documents collection
-  var collection = db.collection('controlers');
+  var collection = db.collection('controllers');
   // Insert some documents
   collection.deleteOne({ name : "sunblind" }, function(err, result) {
     assert.equal(err, null);
@@ -80,7 +80,7 @@ var deleteDocument = function(db, callback) {
 /*
 var findDocuments = function(db, callback) {
   // Get the documents collection
-  var collection = db.collection('controlers');
+  var collection = db.collection('controllers');
   // Find some documents
   collection.find({ name : topic }).toArray(function(err, docs) {
     console.log(x_state+" Found the following records with name: "+topic);
