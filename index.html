@@ -96,11 +96,11 @@ room_name = room_name.split("/");
 
  socket.on('connect', function() {
 
-  function show_controlers_list() {
-    socket.on('controlers_list', function(controlers) {
+  function show_controllers_list() {
+    socket.on('controllers_list', function(controllers) {
      
 
-	var controlers_list = jQuery.parseJSON(controlers.payload);
+	var controllers_list = jQuery.parseJSON(controllers.payload);
 
 
 
@@ -109,11 +109,11 @@ room_name = room_name.split("/");
      
 
       $("#device_list").html('<ul>');
-	if (controlers_list.length === 0) {       $("#device_list").append('<li> <span class="nav_li">No result!</span> </li>');}
+	if (controllers_list.length === 0) {       $("#device_list").append('<li> <span class="nav_li">No result!</span> </li>');}
  else
 	{ 
-      for (i = 0; i < controlers_list.length; i++) {
-      $("#device_list").append('<li onclick="device_changer('+controlers_list[i].id+', '+'\''+controlers_list[i].name+'\''+')" id="'+ controlers_list[i].id  +'"><span class="nav_li">'+ controlers_list[i].name +'</span><div class="clear"></div></li>');
+      for (i = 0; i < controllers_list.length; i++) {
+      $("#device_list").append('<li onclick="device_changer('+controllers_list[i].id+', '+'\''+controllers_list[i].name+'\''+')" id="'+ controllers_list[i].id  +'"><span class="nav_li">'+ controllers_list[i].name +'</span><div class="clear"></div></li>');
 		}
 	}
       $("#device_list").append('</ul>');
@@ -143,7 +143,7 @@ room_name = room_name.split("/");
   }
 
 show_rooms_list();
-show_controlers_list();
+show_controllers_list();
 	toggler();
 
   socket.on('mqtt', function(msg) {
