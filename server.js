@@ -62,16 +62,16 @@ io.sockets.on('connection', function(socket) {
 
         socket.on('choose_controllers', function(data) {
 
-            db.collection('controlers').find({
+            db.collection('controllers').find({
                 room_id: data.room_id
-            }).toArray(function(err, controlers) {
+            }).toArray(function(err, controllers) {
 
-                console.log("Found " + controlers.length + " controlers records with " + data.room_id);
-                var jstr = JSON.stringify(controlers);
+                console.log("Found " + controllers.length + " controllers records with " + data.room_id);
+                var jstr = JSON.stringify(controllers);
 
                 console.log(jstr);
-                io.sockets.emit('controlers_list', {
-                    'topic': 'controlers_list',
+                io.sockets.emit('controllers_list', {
+                    'topic': 'controllers_list',
                     'payload': String(jstr)
                 });
 
@@ -92,8 +92,8 @@ io.sockets.on('connection', function(socket) {
                 name: data.topic
             }).toArray(function(err, rooms) {
 
-                console.log("Found " + rooms.length + " controlers records with " + data.topic);
-                //var jstr = JSON.stringify(controlers);
+                console.log("Found " + rooms.length + " controllers records with " + data.topic);
+                //var jstr = JSON.stringify(controllers);
 
 
                 for (var i = 0; i < rooms.length; i++)
@@ -102,11 +102,11 @@ io.sockets.on('connection', function(socket) {
                     console.log(rooms[i].id);
 
 
-                    db.collection('controlers').find({
+                    db.collection('controllers').find({
                         room_id: rooms[i].id
                     }).toArray(function(err, start_state) {
 
-                        console.log("Found " + start_state.length + " controlers records");
+                        console.log("Found " + start_state.length + " controllers records");
 
 
 
@@ -131,7 +131,7 @@ io.sockets.on('connection', function(socket) {
 
 
 
-        collection = db.collection('controlers');
+        collection = db.collection('controllers');
         //mongo.db end
         // socket connection indicates what mqtt topic to subscribe to in data.topic
         // отписываемся от комнаты взятую из "function get_controllers" little_aps.js
