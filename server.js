@@ -243,7 +243,7 @@ client.on('message', function(topic, payload, packet) {
     if (payload[0] == 's') {
         var op = 'update';
         var msg = payload[6] + "/" + payload[2];
-console.log("topic -"+payload[4]+" msg -"+msg)
+console.log(payload);
         // topic - "device_id"; payload =state/room_id
      /*   var op = new query.mdb(op, payload[4], msg);
         op.view();*/
