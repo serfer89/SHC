@@ -14,7 +14,7 @@ var options = {
 
 var r_topic = "";
 var room_id = "";
-var msg="";
+var msg = "";
 
 // create a socket object that listens on port 3000
 var io = require('socket.io').listen(3000);
@@ -197,7 +197,7 @@ io.sockets.on('connection', function(socket) {
             db.collection('rooms').find({
                 name: s_topic[0]
             }).toArray(function(err, rooms) {
-                room_id=rooms[0].id;
+                room_id = rooms[0].id;
                 console.log("Room id - " + room_id);
                 payload[1] = payload[1] + "/" + rooms[0].id;
                 data.payload = payload[0] + "/" + payload[1];
@@ -214,11 +214,11 @@ io.sockets.on('connection', function(socket) {
             // socket.io end
         });
 
-client.on('answer', function(topic, payload, packet) {
-    console.log('answer' + topic + '-' + payload);
+        client.on('answer', function(topic, payload, packet) {
+            console.log('answer' + topic + '-' + payload);
 
 
-               /* var op = 'update';
+            /* var op = 'update';
                 var op = new query.mdb(op, payload[0], payload[1]);
                 op.view();
                 console.log("Room up - " + payload[1]);
@@ -227,7 +227,7 @@ client.on('answer', function(topic, payload, packet) {
         'topic': String(topic),
         'payload': String(payload)
     });*/
-});
+        });
 
 
 
@@ -242,13 +242,16 @@ client.on('message', function(topic, payload, packet) {
     payload = String(payload);
     payload = payload.split("/");
     if (payload[0] == 's') {
- var op = 'update';
-                var op = new query.mdb(op, payload[1], payload[2]);
-                op.view();
-console.log("Succsessful");}
-    else {
-    io.sockets.emit('mqtt', {
-        'topic': String(topic),
-        'payload': String(payload)
-    });}
+        var op = 'update';
+        var msg = payload[6] + "/" + payload[2];
+        // topic - "device_id"; payload =state/room_id
+        var op = new query.mdb(op, payload[2], msg);
+        op.view();
+        console.log("Succsessful");
+    } else {
+        io.sockets.emit('mqtt', {
+            'topic': String(topic),
+            'payload': String(payload)
+        });
+    }
 });
