@@ -203,7 +203,6 @@ io.sockets.on('connection', function(socket) {
                 data.payload = payload[0] + "/" + payload[1];
                 client.publish(data.topic, data.payload);
                 console.log("Goo" + payload[0] + "/" + payload[1]);
-                msg = payload[0] + "/" + payload[1];
                 //good_answer(payload[0], payload[1]);
              /*   var op = 'update';
                 var op = new query.mdb(op, payload[0], payload[1]);
@@ -245,7 +244,7 @@ client.on('message', function(topic, payload, packet) {
         var op = 'update';
         var msg = payload[6] + "/" + payload[2];
         // topic - "device_id"; payload =state/room_id
-        var op = new query.mdb(op, payload[2], msg);
+        var op = new query.mdb(op, payload[4], msg);
         op.view();
         console.log("Succsessful");
     } else {
