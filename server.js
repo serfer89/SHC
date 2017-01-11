@@ -242,11 +242,11 @@ client.on('message', function(topic, payload, packet) {
     payload = payload.split("/");
     if (payload[0] == 's') {
         var op = 'update';
-        var msg = payload[6] + "/" + payload[2];
+        var msg = payload[3] + "/" + payload[1];
 console.log(payload);
         // topic - "device_id"; payload =state/room_id
-     /*   var op = new query.mdb(op, payload[4], msg);
-        op.view();*/
+       var op = new query.mdb(op, payload[2], msg);
+        op.view();
         console.log("Succsessful");
     } else {
         io.sockets.emit('mqtt', {
