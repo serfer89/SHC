@@ -205,10 +205,10 @@ io.sockets.on('connection', function(socket) {
                 console.log("Goo" + payload[0] + "/" + payload[1]);
                 msg = payload[0] + "/" + payload[1];
                 //good_answer(payload[0], payload[1]);
-                var op = 'update';
+             /*   var op = 'update';
                 var op = new query.mdb(op, payload[0], payload[1]);
                 op.view();
-                console.log("Room up - " + payload[1]);
+                console.log("Room up - " + payload[1]);*/
             });
 
             // socket.io end
