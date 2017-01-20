@@ -240,7 +240,7 @@ client.on('message', function(topic, payload, packet) {
     console.log(topic + '=' + payload);
     payload = String(payload);
     payload = payload.split("/");
-    if (payload[0] == 'o' && payload[1]!='') {
+    if (payload[0] == 'o' && payload[1]!=''&& payload[1]!='t') {
         var op = 'update';
         var msg = payload[3] + "/" + payload[1];
 console.log(payload);
