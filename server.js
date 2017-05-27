@@ -32,7 +32,7 @@ io.sockets.on('connection', function(socket) {
     // Use connect method to connect to the Server
 
     socket.join('Спальня', function(){
-    console.log(joined to Спальня)}); //після запуску 
+    console.log("joined to Спальня")}); //після запуску 
 
 
     MongoClient.connect(url, function(err, db) {
