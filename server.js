@@ -31,7 +31,8 @@ io.sockets.on('connection', function(socket) {
     var url = 'mongodb://localhost:27017/shc';
     // Use connect method to connect to the Server
 
-
+    socket.join('Спальня', function(){
+    console.log(joined to Спальня)}); //після запуску 
 
 
     MongoClient.connect(url, function(err, db) {
