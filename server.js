@@ -30,8 +30,10 @@ io.sockets.on('connection', function(socket) {
     // Connection URL
     var url = 'mongodb://localhost:27017/shc';
     // Use connect method to connect to the Server
-
+    
+    
     socket.join('Спальня', function(){
+	    client.subscribe('Спальня/Температура');
     console.log("joined to Спальня")}); //після запуску 
 
 
