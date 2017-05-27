@@ -33,7 +33,7 @@ io.sockets.on('connection', function(socket) {
     
     
     socket.join('Спальня', function(){
-	    client.subscribe('Спальня/Температура');
+	    client.subscribe('#');
     console.log("joined to Спальня")}); //після запуску 
 
 
