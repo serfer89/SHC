@@ -16,7 +16,14 @@ var options = {
 var r_topic = "";
 var room_id = "";
 var msg = "";
-
+function ping_test(ping_tst){
+var timerId = setTimeout(function tick() {
+if (counter == ping_tst){console.log('something going wrong');}
+else {console.log('ping - ok!');}
+	
+  timerId = setTimeout(tick, 2000);
+}, 2000);
+}
 // create a socket object that listens on port 3000
 var io = require('socket.io').listen(3000);
 console.log('Listen 3000');
@@ -34,17 +41,7 @@ io.sockets.on('connection', function(socket) {
     
     
    
-function ping_test(ping_tst){
-	
-var timerId = setTimeout(function tick() {
-if (counter == ping_tst){console.log('something going wrong');}
-else {console.log('ping - ok!');}
-	
-  timerId = setTimeout(tick, 2000);
-}, 2000);
-}
-
-      client.subscribe('#');
+     client.subscribe('#');
  
 
 
