@@ -21,8 +21,8 @@ var timerId = setTimeout(function tick() {
 if (counter == ping_tst){console.log('something going wrong');}
 else {console.log('ping - ok!');}
 	
-  timerId = setTimeout(tick, 2000);
-}, 2000);
+  timerId = setTimeout(tick, 10000);
+}, 10000);
 }
 // create a socket object that listens on port 3000
 var io = require('socket.io').listen(3000);
