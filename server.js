@@ -34,7 +34,6 @@ io.sockets.on('connection', function(socket) {
     
     
    
-    client.subscribe('#');
 function ping_test(ping_tst){
 	
 var timerId = setTimeout(function tick() {
@@ -45,7 +44,8 @@ else {console.log('ping - ok!');}
 }, 2000);
 }
 
-   
+      client.subscribe('#');
+ 
 
 
     MongoClient.connect(url, function(err, db) {
