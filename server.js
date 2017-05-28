@@ -5,6 +5,7 @@ var mqtt = require('mqtt');
 var mqtthost = '93.183.224.198';
 var express = require('express');
 var app = express();
+var counter=0;
 var options = {
     host: mqtthost,
     port: 1883,
@@ -257,4 +258,7 @@ console.log(payload);
             'payload': String(payload)
         });
     }
+		counter++;
+	        console.log("counter"+counter);
+
 });
