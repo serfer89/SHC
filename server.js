@@ -35,6 +35,16 @@ io.sockets.on('connection', function(socket) {
     
    
     client.subscribe('#');
+function ping_test(ping_tst){
+	
+var timerId = setTimeout(function tick() {
+if (counter == ping_tst){console.log('something going wrong');}
+else {console.log('ping - ok!');}
+	
+  timerId = setTimeout(tick, 2000);
+}, 2000);
+}
+
    
 
 
@@ -259,6 +269,8 @@ console.log(payload);
         });
     }
 		counter++;
+	var ping_tst=counter;
+	ping_test(ping_tst);
 	        console.log("counter"+counter);
 
 });
