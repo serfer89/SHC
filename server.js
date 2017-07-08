@@ -172,7 +172,7 @@ io.sockets.on('connection', function(socket) {
 		r_id = db.collection('rooms').find({
                 name: r_name
             })
-		console.log(r_id[0]);
+		console.log(r_id[0].id);
             f_topic = parseInt(f_topic);
             collection.find({
                 id: f_topic, room_id: r_name
