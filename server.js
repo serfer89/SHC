@@ -164,13 +164,18 @@ io.sockets.on('connection', function(socket) {
         });
 
         socket.on('device_state', function(data) {
+		
+		
             console.log("data topic " + data.topic);
             f_topic = data.topic; // device id
 		r_name = data.payload; //room name
-		console.log(data);
+		r_id = db.collection('rooms').find({
+                name: r_name
+            })
+		console.log(r_id);
             f_topic = parseInt(f_topic);
             collection.find({
-                id: f_topic, name: r_name
+                id: f_topic, room_id: r_name
             }).toArray(function(err, docs) {
 
                 console.log("Found " + docs.length + " recordies");
