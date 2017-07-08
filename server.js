@@ -166,10 +166,11 @@ io.sockets.on('connection', function(socket) {
         socket.on('device_state', function(data) {
             console.log("data topic " + data.topic);
             f_topic = data.topic;
+		r_name = data.payload;
 		console.log(data);
             f_topic = parseInt(f_topic);
             collection.find({
-                id: f_topic
+                id: f_topic, name: r_name
             }).toArray(function(err, docs) {
 
                 console.log("Found " + docs.length + " records");
