@@ -173,7 +173,7 @@ io.sockets.on('connection', function(socket) {
                 name: r_name
             }).toArray(function(err, room_data){
 		       
-		console.log(room_data.length);
+		console.log(room_data[0].id);
 			
             f_topic = parseInt(f_topic);
             collection.find({
