@@ -171,8 +171,10 @@ io.sockets.on('connection', function(socket) {
 		r_name = data.payload; //room name
 		r_id = db.collection('rooms').find({
                 name: r_name
-            })
-		console.log(r_id[0].id);
+            }).toArray(function(err, room_data){
+		       
+		console.log(room_data.length);
+			
             f_topic = parseInt(f_topic);
             collection.find({
                 id: f_topic, room_id: r_name
@@ -193,6 +195,7 @@ io.sockets.on('connection', function(socket) {
                     console.log("Found " + docs.length);
                 }
             });
+	});
             /*
         console.log('get to '+data.topic+" the "+data.payload);
 	var op = 'find'; 
