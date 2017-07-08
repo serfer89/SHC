@@ -173,7 +173,7 @@ io.sockets.on('connection', function(socket) {
                 id: f_topic, name: r_name
             }).toArray(function(err, docs) {
 
-                console.log("Found " + docs.length + " records");
+                console.log("Found " + docs.length + " recordies");
                 //console.dir(docs);
                 //callback(docs.length);
                 if (docs.length > 0) {
