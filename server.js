@@ -174,7 +174,7 @@ io.sockets.on('connection', function(socket) {
             }).toArray(function(err, room_data){
 		       
 		console.log(room_data[0].id);
-	    r_id=room_data[0].id
+	    r_id=room_data[0].id;
             f_topic = parseInt(f_topic);
             collection.find({
                 id: f_topic, room_id: r_id
